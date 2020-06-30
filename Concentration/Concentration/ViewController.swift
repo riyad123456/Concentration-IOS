@@ -23,7 +23,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var flipCountLabel: UILabel!
     @IBOutlet var cardButtons: [UIButton]!
     @IBAction func newGameButton(_ sender: Any) {
-        flipCount = 0
         for index in cardButtons.indices{
             game.cards[index].isFaceUp = false
             game.cards[index].isMatched = false
@@ -64,13 +63,15 @@ class ViewController: UIViewController {
     var emojiChoices: [String]!
     var emoji = [Int:String]()
     func emoji(for card: Card) -> String{
-            var emojis = emojiChoices!
-            if emoji[card.identifier] == nil, emojis.count > 0{
-                let randomIndex = Int(arc4random_uniform(UInt32(emojis.count)))
-                emoji[card.identifier] = emojis.remove(at: randomIndex)
+            print(emojiChoices!)
+            if emoji[card.identifier] == nil, emojiChoices.count > 0{
+                let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+                emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
         }
         return emoji[card.identifier] ?? ""
     }
 }
+
+
 
 
